@@ -57,8 +57,17 @@ function printlibrary (libreria) {
 //Ej
 
 printlibrary(libreria)
+console.clear()
 
 // Intereccion de usuario con funciones
 
+const btnopenform = document.getElementById("btn-openform")
+console.log(btnopenform)
 
+const formnewbook = document.getElementById("formaddbook")
+console.log(formnewbook)
+
+btnopenform.addEventListener('click', function() {
+  formnewbook.style.display = 'block';  // o 'flex', 'grid' según necesites
+});
 
