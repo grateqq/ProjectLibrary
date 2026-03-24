@@ -9,6 +9,7 @@ const name = document.getElementById('name').value
 console.log(name)
 libreria.push(name)
 console.log(libreria)
+form.reset();
 })
 
 const libreria = []
