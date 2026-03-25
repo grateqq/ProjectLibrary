@@ -15,6 +15,14 @@ function addbooktolibrary (author, pages, name) {
   libro.id = crypto.randomUUID()
   libreria.push(libro)
 }
+
+// F. elimina libro con id
+
+function deletetolibrary(idbook) {
+  const indice = libreria.findIndex(idbook)
+  console.log(indice)
+
+}
 // F. Lee la libreria en consola
 function readLibrary (libreria) {
   libreria.forEach(function(libro) {
@@ -82,9 +90,11 @@ console.log("h")
 const btndelete = document.querySelectorAll(".btndeletee");
 console.table(btndelete)
 btndelete.forEach(function (btne) {btne.addEventListener("click", function(event) {
-  // console.log("click event")
-  
+  // console.log("click event") // test
+  // console.log(btne.dataset.id) // id
+
 })})
 // ('click', function(event) { console.log("click click")})
 
 
+deletetolibrary("jere")
