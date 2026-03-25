@@ -6,6 +6,7 @@ function Book (author, pages, name ) {
   this.author = author;
   this.pages = pages;
   this.name = name;
+  
 }
 
 function addbooktolibrary (author, pages, name) {
@@ -23,7 +24,7 @@ function readLibrary (libreria) {
 addbooktolibrary ("jere", 200, "Hilo Rojo")
 addbooktolibrary ("mica", 300, "Hilo Azul")
 addbooktolibrary ("miche", 400, "TapaDorada")
-// console.log(libreria)
+console.log(libreria)
 
 const tbody= document.getElementById ("table-body");
 console.log(tbody); 
@@ -38,7 +39,12 @@ function printlibrary (libreria) {
         <th>${libro.author}</th>
         <th>${libro.pages}</th>
       </tr>
+      <button id="${libro.id}">x</button>
       `
+      
+
+      
+
       tbody.appendChild(newtr)
     
  })

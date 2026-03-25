@@ -1,0 +1,17 @@
+.content {
+  display: flex;
+}
+
+#formaddbook {
+  display: none;
+}
+
+.showbooks {
+  background-color: aquamarine;
+  padding: 5px;
+}
+
+.addbook {
+   background-color: rgb(222, 235, 230);
+  padding: 5px;
+}
