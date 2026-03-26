@@ -9,20 +9,7 @@ function Book (author, pages, name ) {
   this.pages = pages;
   this.name = name;
 }
-//F. agrega un librio a la libreria
-function addbooktolibrary (author, pages, name) {
-  const libro = new Book (author, pages, name);
-  libro.id = crypto.randomUUID()
-  libreria.push(libro)
-}
 
-// F. elimina libro con id
-
-function deletetolibrary(idbook) {
-  const indice = libreria.findIndex(idbook)
-  console.log(indice)
-
-}
 // F. Lee la libreria en consola
 function readLibrary (libreria) {
   libreria.forEach(function(libro) {
@@ -30,71 +17,40 @@ function readLibrary (libreria) {
  })
 }
 
-//Ejemplo Carga inicial
+//F. agrega un librio a la libreria
+function addbooktolibrary (author, pages, name) {
+  const libro = new Book (author, pages, name);
+  libro.id = crypto.randomUUID()
+  libreria.push(libro)
+}
+// F. elimina libro con id
+
+function deleteindice(indice) {
+  libreria.splice(indice,1)
+  console.log("corte-----------")
+  readLibrary(libreria)
+}
+
+// Funcion que busque indice pr id
+function indiceID (libreria) {
+  const indice = libreria.findIndex(libro => libro.author === "jere");
+    console.log(indice)
+}
+
+
+// console.log(libreria)
+
+console.log("ok----")
+
+// console.log(libreria[1].name)
+
+//Carga inicial
 addbooktolibrary ("jere", 200, "Hilo Rojo")
 addbooktolibrary ("mica", 300, "Hilo Azul")
 addbooktolibrary ("miche", 400, "TapaDorada")
-// console.log(libreria)
-
-
-//test 
+// Impresion inicial
 readLibrary(libreria)
-console.log("ok----")
-
-//F visualiza en la tabla todos los libros
-// imprimir boton delete
-
-function printlibrary (libreria) {
- 
-  libreria.forEach(function(libro) {
-    const tbody= document.getElementById ("table-body");
-    console.log(tbody); 
-
-    console.log(libro.name); console.log(libro.pages);console.log(libro.author)
-    const newtr = document.createElement('tr')
-    newtr.innerHTML = `
-      <tr>
-        <td>${libro.name}</td>
-        <td>${libro.author}</td>
-        <td>${libro.pages}</td>
-        <td><button class="btndeletee" data-id='${libro.id}'>x</button></td>
-      </tr>
-      `
-      
-      tbody.appendChild(newtr)
-      
-
-  })
-}
-printlibrary(libreria)
-
-// // const btndelete = document.querySelectorAll("btn-delete")
-// const bottondelete = document.createElement("button")
-// bottondelete.addEventListener('click', function(event) { console.log("click click")})
-// const body = document.querySelector("body")
-// body.appendChild(bottondelete)
-// console.log(bottondelete)
-
-// console.log(btndelete)
-
-
-// const btndelete = document.("btn-delete")
-//   btndelete.forEach(boton =>{
-//   boton.addEventListener('click', () => {
-//     console.log("click delete")
-//   })
-
-// })
-console.clear()
-console.log("h")
-const btndelete = document.querySelectorAll(".btndeletee");
-console.table(btndelete)
-btndelete.forEach(function (btne) {btne.addEventListener("click", function(event) {
-  // console.log("click event") // test
-  // console.log(btne.dataset.id) // id
-
-})})
-// ('click', function(event) { console.log("click click")})
-
-
-deletetolibrary("jere")
+//cortamos y volvemos a imprimier
+deleteindice(2)
+//busca por propiedad
+indiceID(libreria)
