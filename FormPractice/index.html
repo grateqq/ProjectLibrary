@@ -12,13 +12,28 @@
     <div class="addbook">
       <button id="btn-openform">Click Me</button>
       <form action="" id="formaddbook">
-        <label for="name">Name: </label>
-        <input type="text" id="name">
-        <label for="author">Author: </label>
-        <input type="text" id="author">
-        <label for="pages">Pages: </label>
-        <input type="text" id="pages">
-        <button type="submit" id="btn-sumit" >enviar</button>
+        <fieldset>
+          <legend>Información del libro</legend>
+          
+          <div>
+            <label for="name">Nombre: </label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          
+          <div>
+            <label for="author">Autor: </label>
+            <input type="text" id="author" name="author" required>
+          </div>
+          
+          <div>
+            <label for="pages">Páginas: </label>
+            <input type="number" id="pages" name="pages" min="1" required>
+          </div>
+        </fieldset>
+        
+        <div>
+          <button type="submit" id="btn-submit">Enviar</button>
+        </div>
       </form>
     </div>
 

@@ -92,12 +92,43 @@ const btnopenform = document.getElementById("btn-openform")
 
 const formnewbook = document.getElementById("formaddbook")
 // console.log(formnewbook)
-
+formnewbook.addEventListener
 btnopenform.addEventListener('click', function() {
-  formnewbook.style.display = 'block';  // o 'flex', 'grid' según necesites
+  
+  formnewbook.style.display = 'flex';  // o 'flex', 'grid' según necesites
+  
 });
+/// work here
+formnewbook.addEventListener('click', event => {
+     event.preventDefault()
+} )
+
+const btnsubmit = document.getElementById("btn-submit")
+console.log(btnsubmit)
+//hacer funcionar el boton
+btnsubmit.addEventListener('click', event => {
+    console.log("click en submit");
+    addbooktolibrary (
+      document.getElementById('author').value,
+      document.getElementById('pages').value,
+      document.getElementById('name').value
+    )
+    resettable()
 
 
+    printlibrary(libreria)
+    formnewbook.style.display = 'none'
+    formnewbook.reset();
+    
+   
+  })
+
+
+
+
+
+
+/// work antes
 console.log("ok----")
 //Ejemplo Carga inicial
 addbooktolibrary ("jere", 200, "Hilo Rojo")
@@ -110,6 +141,6 @@ addbooktolibrary ("miche", 400, "TapaDorada")
 readLibrary(libreria)
 
 printlibrary(libreria)
-// console.clear()
+console.clear()
 
 // resettable()
