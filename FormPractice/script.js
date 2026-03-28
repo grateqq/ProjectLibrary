@@ -5,23 +5,26 @@ const libreria = [];
 
 
 //F. constructura
-function Book (author, pages, name ) {
+function Book (author, pages, name, isread) {
   this.author = author;
   this.pages = pages;
   this.name = name;
+  this.isread = isread;
 }
 //F. agrega un librio a la libreria
-function addbooktolibrary (author, pages, name) {
-  const libro = new Book (author, pages, name);
+function addbooktolibrary (author, pages, name, isread) {
+  const libro = new Book (author, pages, name, isread);
   libro.id = crypto.randomUUID()
   libreria.push(libro)
 }
 // F. Lee la libreria en consola
-function readLibrary (libreria) {
+function readLibrary () {
   libreria.forEach(function(libro) {
     console.log(libro)
  })
 }
+
+
 
 //F. Clear tabla
 
@@ -36,11 +39,25 @@ function deleteindice(indice) {
   readLibrary(libreria)
   printlibrary(libreria)
 }
+
+//F. read or no
+function changeisread (indice) {
+
+  if (libreria[indice].isread === true) {
+    libreria[indice].isread = false
+  } else {
+    libreria[indice].isread = true
+  }
+}
+
+
+
 //F. Buscar indice segun id
 function indiceID (idlibro) {
 
   const indice = libreria.findIndex(libro => libro.id === idlibro);
     console.log(indice)
+    return indice
 }
 
 
@@ -50,6 +67,9 @@ function printlibrary () {
 
    libreria.forEach(function(libro) {
     const tbody= document.getElementById ("table-body");
+    let cheakisok = ""
+    if (libro.isread === true) {cheakisok = "checked"}
+    else {cheakisok = ""}
     // console.log(tbody); 
 
     // console.log(libro.name); console.log(libro.pages);console.log(libro.author)
@@ -59,13 +79,20 @@ function printlibrary () {
         <th>${libro.name}</th>
         <th>${libro.author}</th>
         <th>${libro.pages}</th>
+        
+        <div>
+          <input type="checkbox" class="isRead" id="isRead" name="isRead" data-id="${libro.id}" ${cheakisok}>
+          <label for="isRead">¿Leído?</label>
+        </div>
+
         <th><button class="btn-delete" data-id="${libro.id}" >X</button></th>   
         
       `
     tbody.appendChild(newtr)
   })
+
   const btndelete = document.querySelectorAll(".btn-delete")
-  console.log(btndelete)
+    // console.log(btndelete)
   btndelete.forEach(function(button){
     button.addEventListener("click", function(event) {
       const idbook = button.dataset.id
@@ -78,8 +105,25 @@ function printlibrary () {
       printlibrary()
     })
   })
+
+
+  const btnisread = document.querySelectorAll(".isRead")
+  // console.log(btnisread)
+  btnisread.forEach(function(button){
+      button.addEventListener("click", function(event) {
+      const idbook = button.dataset.id
+      console.log(button.dataset.id)
+      const indiceBook = indiceID(idbook)
+      console.log(indiceBook)
+      changeisread(indiceBook)
+      console.table(libreria[indiceBook])
+      resettable()
+      // readLibrary()
+      printlibrary()
+    })
   
   
+  })
 }
 //Ej
 
@@ -99,19 +143,24 @@ btnopenform.addEventListener('click', function() {
   
 });
 /// work here
-formnewbook.addEventListener('click', event => {
-     event.preventDefault()
-} )
+// formnewbook.addEventListener('click', event => {
+//      event.preventDefault()
+// } )
 
 const btnsubmit = document.getElementById("btn-submit")
-console.log(btnsubmit)
+// console.log(btnsubmit)
 //hacer funcionar el boton
 btnsubmit.addEventListener('click', event => {
+  event.preventDefault()
+  
+    
     console.log("click en submit");
     addbooktolibrary (
       document.getElementById('author').value,
       document.getElementById('pages').value,
-      document.getElementById('name').value
+      document.getElementById('name').value,
+      document.getElementById('isRead').checked
+
     )
     resettable()
 
@@ -131,16 +180,17 @@ btnsubmit.addEventListener('click', event => {
 /// work antes
 console.log("ok----")
 //Ejemplo Carga inicial
-addbooktolibrary ("jere", 200, "Hilo Rojo")
-addbooktolibrary ("mica", 300, "Hilo Azul")
-addbooktolibrary ("miche", 400, "TapaDorada")
+addbooktolibrary ("jere", 200, "Hilo Rojo",true)
+addbooktolibrary ("mica", 300, "Hilo Azul",true)
+addbooktolibrary ("miche", 400, "TapaDorada",false)
 // console.log(libreria)
 
 
 //test 
-readLibrary(libreria)
+// readLibrary(libreria)
 
 printlibrary(libreria)
-console.clear()
-
-// resettable()
+// // console.clear()
+// console.clear()
+// // console.log(libreria[2].isread)
+// // resettable()
